@@ -87,6 +87,14 @@ bot.addListener("message#kbve", function(nick, text, message) {
 
 setTimeout(function() {
 	socket.on('chat', function(data) {
+		
+		
+		// IRC
+		if(data.user != "!Topic" && data.user != "*System" && loggedIn && data.user != username && !contains(data.message, "class='label label-success'>has tipped"))
+		{
+			bot.say(config.channels[0], "[" + data.user + "] " + stripHTML(data.message));
+		}
+		
 		if (data.user != "!Topic" && data.user != "*System" && loggedIn && data.user != username) {
 			if (contains(data.message, ["<span style=\"color: #"])) {
 				data.message = data.message.split("\">")[1];
