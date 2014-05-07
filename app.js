@@ -70,6 +70,21 @@ socket.on('loggedin', function(data) {
 	}, 600);
 });
 
+
+
+bot.addListener("message#kbve", function(nick, text, message) {
+		if(!contains(nick,"bot") || !contains(nick,"kbve") || !contains(text,"WCBot") || !contains(text,"KBVE"))
+		{
+		console.log("Nick: " + nick + " Text: " + text + " Message: " + message);
+		socket.emit('chat', {
+            room: 'lobby',
+            message: '['+nick+ '] ' + stripHTML(text), 
+			color: 'FFF', 
+			badge: ''
+        });
+		}
+	});
+
 setTimeout(function() {
 	socket.on('chat', function(data) {
 		if (data.user != "!Topic" && data.user != "*System" && loggedIn && data.user != username) {
