@@ -1,11 +1,33 @@
 GLOBAL.log = "";
 
 var io = require('socket.io-client');
+var irc = require("irc");
 var cmd = require('./commands');
 var http = require('http');
 var socket = io.connect("https://dogechat.net", {
 	secure: true
 });
+
+
+
+var config = {
+	channels: ["#kbve"],
+	server: "kbve.com",
+	botName: "kbveirc"
+};
+
+
+// Create the IRCBot name
+var bot = new irc.Client(config.server, config.botName, {
+	channels: config.channels
+});
+
+
+function stripHTML(html) {
+        return html.replace(/<\/?([a-z][a-z0-9]*)\b[^>]*>?/gi, '');
+    }
+
+
 
 var server = http.createServer(function(request, response) {
 	response.writeHead(200, {
