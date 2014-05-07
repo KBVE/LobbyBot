@@ -138,7 +138,7 @@ socket.on('disconnect', function() {
 		secure: true
 	});
 });
-/**
+
 function contains(string, terms) {
 	for (var i = 0; i < terms.length; i++) {
 		if (string.toLowerCase().indexOf(terms[i].toLowerCase()) == -1) {
@@ -147,8 +147,9 @@ function contains(string, terms) {
 	}
 	return true;
 }
-**/
+/*=
 function contains(string, terms){
 	if(string.indexOf(terms) === -1){ return false; }
 	return true;
 }
+**/
